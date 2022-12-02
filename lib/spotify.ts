@@ -1,3 +1,4 @@
+import type { NextApiRequest, NextApiResponse } from "next";
 import { hasCookie, getCookie } from "cookies-next";
 import aes256 from "aes256";
 
@@ -22,10 +23,18 @@ export const SEARCH_TYPES = {
 	},
 };
 
-export const getAccesToken = async (req, res) => {
+export const getAccesToken = async (
+	req: NextApiRequest,
+	res: NextApiResponse
+) => {
 	// Do we have a refresh token available?
 	const refresh_token = hasCookie("refresh_token", { req, res })
-		? aes256.decrypt(process.env.SALT, getCookie("refresh_token", { req, res }))
+		? aes256
+				.decrypt(
+					process.env.SALT,
+					getCookie("refresh_token", { req, res }).toString() // This is to shut up typescript is this correct?
+				)
+				.toString() // This is to shut up typescript is this correct?
 		: null;
 
 	try {

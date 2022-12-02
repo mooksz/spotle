@@ -1,4 +1,4 @@
-export const needsLinkTag = (url) => {
+export const needsLinkTag = (url: string): boolean => {
 	return !(
 		url.includes("http://") ||
 		url.includes("https://") ||
