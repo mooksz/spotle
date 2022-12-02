@@ -1,0 +1,96 @@
+@use "fonts";
+@use "variables" as *;
+@use "normalize";
+@use "print";
+
+html {
+	font-size: 100%;
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+audio,
+canvas,
+img,
+video {
+	vertical-align: middle;
+}
+
+fieldset {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+	font-family: var(--fnt);
+	font-weight: 400;
+	font-style: normal;
+	font-size: 1rem;
+
+	text-rendering: geometricPrecision;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: var(--clr-black);
+	color: var(--clr-white);
+	min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--fnt-headings);
+	margin: 0 0 0.35em 0;
+}
+
+p {
+	margin: 0 0 1em 0;
+}
+
+.heading-1 {
+	font-size: 3.125rem;
+}
+
+.screen-reader-text {
+	border: 0;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	word-wrap: normal !important;
+}
+
+// ! Would do: more global styles for reusable elements that aren't components (inputs etc)
+
+// next/image Safari 15+ displays a gray border while loading solution:
+@supports (font: -apple-system-body) and (-webkit-appearance: none) {
+	img[loading="lazy"] {
+		clip-path: inset(0.6px);
+	}
+}

@@ -1,0 +1,10 @@
+.notice {
+	padding: 10px 15px;
+	background-color: var(--clr-red);
+	color: var(--clr-white);
+	border-radius: 5px;
+
+	p:last-child {
+		margin-bottom: 0;
+	}
+}

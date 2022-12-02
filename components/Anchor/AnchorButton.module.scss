@@ -1,0 +1,75 @@
+.btn {
+	display: block;
+	width: fit-content;
+	max-width: 100%;
+	cursor: pointer;
+	appearance: none;
+	border: 0;
+	outline: 0;
+	text-decoration: none;
+	text-align: center;
+}
+
+// ! Primary
+.primary {
+	background-color: var(--clr-green);
+
+	&:focus,
+	&:hover {
+		background-color: var(--clr-green-highlight);
+	}
+}
+
+// ! Secondary
+.secondary {
+	background-color: var(--clr-white);
+}
+
+// ! Primary && Secondary && Tertiary
+.primary,
+.secondary {
+	transition: transform 200ms ease-in-out, background-color 200ms ease-in-out;
+	text-decoration: none;
+	color: var(--clr-black);
+	border-radius: 500px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 30px;
+	font-family: var(--fnt-headings-r);
+
+	&:visited,
+	&:active {
+		text-decoration: none;
+		color: var(--clr-black);
+	}
+
+	&:focus,
+	&:hover {
+		color: var(--clr-black);
+		text-decoration: none;
+		transform: scale(1.04);
+	}
+}
+
+// ! Text link
+.text-link {
+	text-decoration: underline;
+	color: var(--clr-green);
+
+	&:visited,
+	&:active {
+		text-decoration: underline;
+		color: var(--clr-green);
+	}
+
+	&:focus,
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.wrapper {
+	all: unset;
+	cursor: pointer;
+}
