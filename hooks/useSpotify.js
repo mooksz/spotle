@@ -26,7 +26,7 @@ export const useSpotify = (q) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 	const controller = new AbortController();
 	const signal = controller.signal;
-	const baseUrl = "/api/spotify/";
+	const baseUri = "/api/spotify/";
 
 	useEffect(() => {
 		let cancelRequest = false;
@@ -42,7 +42,7 @@ export const useSpotify = (q) => {
 			}
 
 			try {
-				const response = await fetch(`${baseUrl}${endpoint}`, { signal });
+				const response = await fetch(`${baseUri}${endpoint}`, { signal });
 
 				if (response.status !== 200) {
 					throw new Error(response.statusText);
