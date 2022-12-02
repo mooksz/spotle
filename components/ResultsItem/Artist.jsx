@@ -4,7 +4,6 @@ import ExternalLinkWhiteIcon from "@/components/Icons/external-link-white.svg";
 import { Anchor } from "@/components/Anchor/Anchor";
 
 export const Artist = (props) => {
-	console.log("🙋‍♂️", props);
 	const { name, genres, images, external_urls, type } = props;
 	const image = images.length ? images[0] : null;
 
