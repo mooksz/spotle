@@ -2,10 +2,21 @@ import globalStyles from "./ResultsItem.module.scss";
 import Image from "next/image";
 import ExternalLinkWhiteIcon from "@/components/Icons/external-link-white.svg";
 import { Anchor } from "@/components/Anchor/Anchor";
+import { useUser } from "@/hooks/useUser";
 
 export const Track = (props) => {
-	const { name, album, external_urls, type } = props;
+	// Would do: Login status needs to be be global state so it causes a rerender when loggin while
+	// results are shown
+	const { isLoggedIn } = useUser();
+	const { name, album, external_urls, type, saved } = props;
 	const image = album?.images?.length ? album.images[0] : null;
+
+	const SaveButton =
+		isLoggedIn && !saved
+			? "Click to save"
+			: isLoggedIn && saved
+			? "Click to unsave"
+			: null;
 
 	return (
 		<div className={globalStyles["track"]}>
@@ -32,6 +43,8 @@ export const Track = (props) => {
 						<span className={globalStyles["type"]}>{type}</span>
 					</div>
 				</div>
+
+				{SaveButton}
 
 				<ExternalLinkWhiteIcon className={globalStyles["link-icon"]} />
 			</Anchor>

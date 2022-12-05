@@ -75,11 +75,11 @@ export const Results = (props) => {
 							key={render}
 							initial='hidden'
 							animate='visible'>
-							{shuffledItems.map((item, index) => {
+							{shuffledItems.map((item) => {
 								const { id } = item;
 								return (
 									<motion.div variants={itemVariants} key={id}>
-										<ResultsItem index={index} {...item} />
+										<ResultsItem {...item} />
 									</motion.div>
 								);
 							})}

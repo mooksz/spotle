@@ -18,7 +18,10 @@ const spotifyRoute = async (req, res) => {
 		res.status(400).json({ error: "endpoint is required" });
 	}
 
-	// Check if we have an access token
+	// Check if we have an access and refresh token
+	const refreshToken = hasCookie("refresh_token", { res, req })
+		? aes256.decrypt(process.env.SALT, getCookie("refresh_token", { res, req }))
+		: null;
 	let accessToken = hasCookie("access_token", { res, req })
 		? aes256.decrypt(process.env.SALT, getCookie("access_token", { res, req }))
 		: null;
@@ -58,12 +61,64 @@ const spotifyRoute = async (req, res) => {
 
 		const data = await fetchResponse.json();
 
+		if (refreshToken && data?.tracks?.items?.length) {
+			const withSavedTracksItems = await addSavedTracksStatus(
+				data.tracks.items,
+				accessToken
+			);
+
+			res.send(
+				JSON.stringify({
+					...data,
+					tracks: { ...data.tracks, items: withSavedTracksItems },
+				})
+			);
+			return;
+		}
+
 		res.send(JSON.stringify(data));
 	} catch (error) {
 		res
 			.status(500)
 			.send({ error: "failed to fetch data", message: error.message });
 	}
+};
+
+const addSavedTracksStatus = async (tracks, accessToken) => {
+	const data = [...tracks];
+
+	const trackIds = data.map((item) => {
+		return item.id;
+	});
+
+	if (!trackIds.length) {
+		return data;
+	}
+
+	const fetchUsersSavedTracksResponse = await fetch(
+		`https://api.spotify.com/v1/me/tracks/contains?ids=${trackIds}`,
+		{
+			headers: {
+				"Content-Type": "application/x-www-form-urlencoded",
+				Authorization: "Bearer " + accessToken,
+			},
+		}
+	);
+
+	if (fetchUsersSavedTracksResponse.status !== 200) {
+		return data;
+	}
+
+	const usersSavedTracksResponseData =
+		await fetchUsersSavedTracksResponse.json();
+
+	if (!usersSavedTracksResponseData.length) {
+		return data;
+	}
+
+	return data.map((track, index) => {
+		return { ...track, saved: usersSavedTracksResponseData[index] };
+	});
 };
 
 export default spotifyRoute;
