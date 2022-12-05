@@ -7,6 +7,7 @@ import { motion, useReducedMotion } from "framer-motion";
 export const Results = (props) => {
 	const { items } = props;
 	const [shuffledItems, setShuffledItems] = useState([]);
+	// Would do: write render value to string instead of nummer to prevent key collision
 	const [render, setRender] = useState(1);
 	const shouldReduceMotion = useReducedMotion();
 
