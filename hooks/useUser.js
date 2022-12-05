@@ -15,7 +15,7 @@ export const useUser = () => {
 		router.push("/api/auth/login");
 	};
 
-	// Would do, make back-end route to delete refresh token and access token cookies.
+	// Would do: make back-end route to delete refresh token and access token cookies.
 	const logout = () => {
 		deleteCookie("is_logged_in");
 		setIsLoggedIn(false);
