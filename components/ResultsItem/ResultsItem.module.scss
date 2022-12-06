@@ -2,23 +2,10 @@
 .artist,
 .track {
 	border-bottom: 1px solid var(--clr-white);
-
-	&:hover {
-		border-color: var(--clr-green);
-	}
-}
-
-.link {
 	display: flex;
 	align-items: center;
 	justify-content: flex-start;
 	padding: 15px 0;
-
-	&:hover {
-		.link-icon {
-			transform: scale(1.1);
-		}
-	}
 }
 
 .image-wrapper {
@@ -57,6 +44,14 @@
 
 .link-icon {
 	width: 50px;
-	transition: transform 200ms ease-in-out;
-	transform-origin: center;
+
+	path {
+		transition: fill 200ms ease-in-out;
+	}
+
+	&:hover {
+		path {
+			fill: var(--clr-green);
+		}
+	}
 }

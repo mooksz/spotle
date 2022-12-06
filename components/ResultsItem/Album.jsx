@@ -9,31 +9,27 @@ export const Album = (props) => {
 
 	return (
 		<div className={resultsItemStyles["album"]}>
-			<Anchor
-				href={external_urls?.spotify}
-				target='_blank'
-				wrapper
-				className={resultsItemStyles["link"]}>
-				<div className={resultsItemStyles["image-wrapper"]}>
-					{image?.url && (
-						<Image
-							src={image.url}
-							width={image.width}
-							height={image.height}
-							alt={`Artist: ${name}`}
-							className={resultsItemStyles["image"]}
-						/>
-					)}
-				</div>
+			<div className={resultsItemStyles["image-wrapper"]}>
+				{image?.url && (
+					<Image
+						src={image.url}
+						width={image.width}
+						height={image.height}
+						alt={`Artist: ${name}`}
+						className={resultsItemStyles["image"]}
+					/>
+				)}
+			</div>
 
-				<div className={resultsItemStyles["info-wrapper"]}>
-					<div className={resultsItemStyles["name"]}>{name}</div>
-					<div className={resultsItemStyles["info"]}>
-						<span className={resultsItemStyles["type"]}>{type} - </span>
-						<span className={resultsItemStyles["release-date"]}>{release_date}</span>
-					</div>
+			<div className={resultsItemStyles["info-wrapper"]}>
+				<div className={resultsItemStyles["name"]}>{name}</div>
+				<div className={resultsItemStyles["info"]}>
+					<span className={resultsItemStyles["type"]}>{type} - </span>
+					<span className={resultsItemStyles["release-date"]}>{release_date}</span>
 				</div>
+			</div>
 
+			<Anchor href={external_urls?.spotify} target='_blank' wrapper>
 				<ExternalLinkWhiteIcon className={resultsItemStyles["link-icon"]} />
 			</Anchor>
 		</div>

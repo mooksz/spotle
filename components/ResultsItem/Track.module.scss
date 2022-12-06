@@ -1,0 +1,26 @@
+.save-button {
+	appearance: none;
+	border: 0;
+	outline: 0;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.save-icon {
+	width: 25px;
+	height: 25px;
+	min-width: 25px;
+	margin: 0 15px 0 0;
+	position: relative;
+	top: 2px;
+
+	path {
+		transition: fill 200ms ease-in-out;
+	}
+
+	&:hover {
+		path {
+			fill: var(--clr-green);
+		}
+	}
+}

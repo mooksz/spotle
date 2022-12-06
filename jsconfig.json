@@ -6,7 +6,9 @@
 			"@/hooks/*": ["hooks/*"],
 			"@/images/*": ["public/images/*"],
 			"@/styles/*": ["styles/*"],
-			"@/lib/*": ["lib/*"]
+			"@/lib/*": ["lib/*"],
+			"@/context/*": ["context/*"],
+			"@/svgIcons/*": ["components/icons/*"]
 		}
 	}
 }
