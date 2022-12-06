@@ -9,7 +9,5 @@
 - useSpeechToText.js: error handling
 - useSpeechToText.js: what happens if no result?
 - useSpotify.js: Create object parameter with all query options for better construction
-- useUser.js: Rewrite to context
-- useUser.js: Make back-end route to delete refresh token and access token cookies. So logout functionallity actually works
 - Results.jsx: write render value to string instead of nummer to prevent key collision
 - global.scss: more global styles for reusable elements that aren't components (inputs etc)
