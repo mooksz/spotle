@@ -17,7 +17,6 @@ export const UserProvider = ({ children }) => {
 	};
 
 	const logout = () => {
-		setIsLoggedIn(false);
 		router.push("/api/auth/logout");
 	};
 
